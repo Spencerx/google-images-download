@@ -51,3 +51,7 @@ downloads/
 
 # Logs
 logs/
+
+# Virtual environment and temp files
+venv/
+temp/
