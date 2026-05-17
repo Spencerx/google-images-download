@@ -127,6 +127,18 @@ class googleimagesdownload:
     def __init__(self):
         pass
 
+    # Sanitize filename by removing illegal characters
+    def sanitize_filename(self, filename):
+        # Remove or replace illegal characters for file/directory names
+        # Windows: < > : " / \ | ? *
+        # Unix/Linux: /
+        illegal_chars = '<>:"/\\|?*'
+        for char in illegal_chars:
+            filename = filename.replace(char, '_')
+        # Also remove leading/trailing spaces and dots (problematic on Windows)
+        filename = filename.strip('. ')
+        return filename
+
     # Downloading entire Web Document (Raw Page Content)
     def download_page(self,url):
         version = (3, 0)
@@ -461,7 +473,7 @@ class googleimagesdownload:
         elif similar_images:
             print(similar_images)
             keywordem = self.similar_images(similar_images)
-            url = 'https://www.google.com/search?q=' + keywordem + '&espv=2&biw=1366&bih=667&site=webhp&source=lnms&tbm=isch&sa=X&ei=XosDVaCXD8TasATItgE&ved=0CAcQ_AUoAg'
+            url = 'https://www.google.com/search?q=' + keywordem + '&espv=2&biw=1366&bih=667&site=webhp&source=lnms&tbm=isch' + params + '&sa=X&ei=XosDVaCXD8TasATItgE&ved=0CAcQ_AUoAg'
         elif specific_site:
             url = 'https://www.google.com/search?q=' + quote(
                 search_term.encode('utf-8')) + '&as_sitesearch=' + specific_site + '&espv=2&biw=1366&bih=667&site=webhp&source=lnms&tbm=isch' + params + '&sa=X&ei=XosDVaCXD8TasATItgE&ved=0CAcQ_AUoAg'
@@ -1017,7 +1029,7 @@ class googleimagesdownload:
                     elif arguments['no_directory']:
                         dir_name = ''
                     else:
-                        dir_name = search_term + ('-' + arguments['color'] if arguments['color'] else '')   #sub-directory
+                        dir_name = self.sanitize_filename(search_term + ('-' + arguments['color'] if arguments['color'] else ''))   #sub-directory
 
                     if not arguments["no_download"]:
                         self.create_directories(main_directory,dir_name,arguments['thumbnail'],arguments['thumbnail_only'])     #create directories in OS
@@ -1044,7 +1056,7 @@ class googleimagesdownload:
                                 os.makedirs("logs")
                         except OSError as e:
                             print(e)
-                        json_file = open("logs/"+search_keyword[i]+".json", "w")
+                        json_file = open("logs/"+self.sanitize_filename(search_keyword[i])+".json", "w")
                         json.dump(items, json_file, indent=4, sort_keys=True)
                         json_file.close()
 

@@ -8,6 +8,12 @@
 - **Documentation**: https://google-images-download.readthedocs.io
 
 ## Recent Major Updates
+- **May 17, 2026**: Fixed filename sanitization issues
+  - Added sanitize_filename() method to handle illegal characters in filenames
+  - Search keywords with slashes, quotes, and other illegal characters now work properly
+  - Prevents Windows/Unix filesystem errors when using extract_metadata or creating directories
+  - Fixes issues #170 and #217
+
 - **May 16, 2026**: Fixed compatibility with modern Google Images and Selenium 4.x
   - Updated to Selenium 4.x API (find_element with By locators, Service class)
   - Added webdriver-manager for automatic chromedriver installation
@@ -29,6 +35,10 @@
 3. **Selenium/Chromedriver errors**
    - Fixed with Selenium 4.x update and webdriver-manager
 
+4. **Filename/directory errors with special characters** (slashes, quotes, etc.)
+   - Keywords with illegal characters (/, \, :, ", <, >, |, ?, *) causing filesystem errors
+   - Fixed with automatic filename sanitization (May 2026)
+
 ### Issue Review Checklist
 - Check if issue describes a bug fixed in recent commits
 - Look at commit messages and git log to see if already addressed
@@ -39,7 +49,8 @@
 ### Closing Issues - Tone Guidelines
 - Keep brief and human
 - Thank user first if genuine issue: "Thanks for reporting!"
-- One sentence explanation: "This is now fixed in the latest version"
+- For fixed issues: Always reply in natural human tone explaining the issue is resolved and briefly describe what we did to fix it
+  - Example: "Thanks for reporting! This is now fixed. The similar_images feature now properly includes filter parameters like size and format in the search URL."
 - For duplicates: "Closing as duplicate of #XXX"
 - For spam: "Closing as spam" or "Closing as not a valid issue"
 
