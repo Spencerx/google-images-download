@@ -6,10 +6,10 @@ Python Script for 'searching' and 'downloading' hundreds of images from Google t
 Documentation
 =============
 
-* `Documentation Homepage <https://google-images-download.readthedocs.io/en/latest/index.html>`__
-* `Installation <https://google-images-download.readthedocs.io/en/latest/installation.html>`__
-* `Input arguments <https://google-images-download.readthedocs.io/en/latest/arguments.html>`__
-* `Examples and Code Samples <https://google-images-download.readthedocs.io/en/latest/examples.html#>`__
+* `Documentation Homepage <https://hardikvasa.github.io/google-images-download/>`__
+* `Installation <https://hardikvasa.github.io/google-images-download/installation/>`__
+* `Input arguments <https://hardikvasa.github.io/google-images-download/arguments/>`__
+* `Examples and Code Samples <https://hardikvasa.github.io/google-images-download/examples/>`__
 
 Requirements
 ============
