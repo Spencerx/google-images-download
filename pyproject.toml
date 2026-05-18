@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "google_images_download"
-version = "3.0.0"
+version = "3.0.1"
 description = "Python Script to download hundreds of images from 'Google Images'. It is a ready-to-run code!"
 readme = "README.rst"
 authors = [{name = "Hardik Vasa", email = "hnvasa@gmail.com"}]
